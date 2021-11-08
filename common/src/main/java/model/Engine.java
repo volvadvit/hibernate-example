@@ -3,8 +3,6 @@ package model;
 import lombok.*;
 
 @Data
-@ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Engine {

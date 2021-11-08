@@ -2,7 +2,8 @@ package dao;
 
 public interface EngineDao<Entity, Key> {
     void create(Entity entity);
+    Entity read(Key key);
     void update(Entity entity);
     void delete(Entity entity);
-    Entity read(Key key);
+    void saveOrUpdate(Entity entity);
 }

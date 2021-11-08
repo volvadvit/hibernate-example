@@ -1,9 +1,9 @@
 package dao;
 
-import com.sun.istack.internal.NotNull;
+import com.sun.istack.NotNull;
+import model.Engine;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Engine;
 
 public class EngineDaoImpl implements EngineDao<Engine, String> {
     /**
@@ -18,7 +18,7 @@ public class EngineDaoImpl implements EngineDao<Engine, String> {
     /**
      * Create new engine in engines table.
      *
-     * @param engine for add.
+     * @param engine for save.
      */
     @Override
     public void create(@NotNull final Engine engine) {
@@ -40,6 +40,15 @@ public class EngineDaoImpl implements EngineDao<Engine, String> {
         try (final Session session = factory.openSession()) {
             final Engine result = session.get(Engine.class, model);
             return result != null ? result : new Engine();
+        }
+    }
+
+    @Override
+    public void saveOrUpdate(Engine engine) {
+        try (final Session session = factory.openSession()) {
+            session.beginTransaction();
+            session.saveOrUpdate(engine);
+            session.getTransaction().commit();
         }
     }
 
