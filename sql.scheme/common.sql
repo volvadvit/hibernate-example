@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS engines (
+  model VARCHAR(25) NOT NULL,
+  power INTEGER     NOT NULL,
+  PRIMARY KEY (model)
+);
